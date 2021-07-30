@@ -1,0 +1,96 @@
+.chatSidebar{
+    flex: 0.3;
+    overflow-y: scroll;
+    background: #aab1bb17;
+}
+
+/* Hide Scrollbar on Chrome, Safari and Opera */
+.chatSidebar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.chatSidebar {
+    scrollbar-width: none; /* Firefox */
+}
+
+.search__wrap{
+    display: flex;
+    border: 1px solid;
+    align-items: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.search__wrap > input {
+    border: 0px;
+    align-self: center;
+    padding: 5px;
+    flex: 0.97;
+}
+
+.search__wrap > svg {
+    padding-left: 5px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.cancel-icon-wrap{
+    cursor: pointer;
+}
+
+.search_contact:focus{
+    outline: none;
+}
+
+.search__dialog{
+    background: antiquewhite;
+    max-height: 300px;
+    z-index: 10;
+    border: 1px solid #c9a586;
+    overflow-y: scroll;
+}
+
+.search-item{
+    color: #0b101b;
+    padding: 5px;
+    margin: 10px;
+    font-size: initial;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #b47e4e;
+}
+
+.search-item:hover{
+    background: #faebd78c;
+}
+
+.no-result{
+    color: #0b101b;
+    padding: 5px;
+    margin: 10px;
+    font-size: initial;   
+}
+
+.search__username{
+    padding-left: 10px;
+}
+
+@media (max-width: 576px) {
+    .chatSidebar{
+        flex: 1;
+        /* overflow-y */
+    }
+    .search__dialog{
+        width: 100%;
+        position: absolute;
+    }
+}
+
+ /* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    
+}

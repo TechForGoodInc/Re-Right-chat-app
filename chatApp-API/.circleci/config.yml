@@ -1,0 +1,58 @@
+version: 2.1
+orbs:
+  heroku: circleci/heroku@1.2.2
+jobs:
+  build:
+    parallelism: 1
+    docker:
+      - image: circleci/python:3.8
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+      - image: circleci/postgres
+        environment:
+          POSTGRES_USER: $SQL_USER
+          POSTGRES_PASSWORD: $SQL_PASSWORD
+    steps:
+      - checkout
+      - restore_cache:
+          key: chatApp-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: Virtual Environment Runs
+          command: |
+            sudo pip install pipenv
+            pipenv install -r requirements.txt
+      - save_cache:
+          key: chatApp-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - 'venv'
+      - run:
+          name: Database runs
+          command: |
+            pipenv run python manage.py makemigrations
+            pipenv run python manage.py migrate
+      - run:
+          name: Run Unit Tests
+          command: |
+            pipenv run python manage.py test
+      
+workflows:
+  my_workflow:
+    jobs:
+      - build:
+          context: 
+            - chatAppContext
+      - heroku/deploy-via-git:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+          context: 
+            - chatAppContext    
+          post-steps:
+            - run: 
+                name: Database migration runs
+                command: |
+                  heroku run python manage.py makemigrations -a $HEROKU_APP_NAME
+                  heroku run python manage.py migrate -a $HEROKU_APP_NAME
+          

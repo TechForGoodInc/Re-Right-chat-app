@@ -1,0 +1,51 @@
+.Contact__row{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0px 2px 11px -1px rgb(0 0 0 / 7%);
+}
+
+.Contact__row:hover{
+    background: #cccccc9c;
+}
+
+.contact__row-text {
+    padding-left: 10px;
+    flex: 1;
+}
+
+.contact__row-text > h4 {
+    margin-bottom: 0px;
+    font-weight: 400;
+}
+
+.contact__row-text > p {
+    color: grey;
+}
+
+.contact__row-indicators {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact__row-indicators > p{
+    margin-bottom: 3px;
+}
+
+.contact__row-indicators:nth-child(1){
+    margin-top: 0px;
+}
+
+.badge{
+    background: #c8d339;
+    width: fit-content;
+    align-self: flex-end;
+}
+
+.chat__bottom > svg {
+    display: flex;
+    float: right;
+    font-size: 25px;
+    color: #d7f9f9;
+}
